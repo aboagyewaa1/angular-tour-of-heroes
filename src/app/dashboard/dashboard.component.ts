@@ -1,25 +1,26 @@
-import { Component , OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: [ './dashboard.component.css' ],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
-export class DashboardComponent implements OnInit {
-  heroes : Hero[] = [];
+export class DashboardComponent {
+  // heroes: Hero[] = [];
 
-  constructor(private heroService: HeroService){}
+  heroes$ = this.heroService.heroes$
 
-  ngOnInit(): void {
-    this.getHeroes();
-  }
+  constructor(private heroService: HeroService) { }
 
-  getHeroes():void{
-    this.heroService.getHereos()
-        .subscribe(heroes => this.heroes = heroes.slice(1,5));
+  // ngOnInit(): void {
+  //   this.getHeroes();
+  // }
 
-  }
-
+  // getHeroes(): void {
+  //   this.heroService.getHeroes()
+  //     .subscribe(heroes => this.heroes = heroes.slice(1, 5));
+  // }
 }

@@ -20,18 +20,20 @@ export class HeroSearchComponent implements OnInit {
 
   constructor(private heroService: HeroService) {}
 
-  search(term:string):void{
-    this.searchTerms.next(term)
+
+  search(term: string): void {
+    this.searchTerms.next(term);
   }
+
   ngOnInit(): void {
-    this.heroes$ = this.searchTerms.pipe(
-      
-      debounceTime(300),
-      distinctUntilChanged(),
-      
-      switchMap((term: string) => this.heroService.searchHeroes(term)),
-    );
+    // this.heroes$ = this.searchTerms.pipe(
+     
+    //   debounceTime(300),
+
+   
+    //   distinctUntilChanged(),
+
+    //   switchMap((term: string) => this.heroService.searchHeroes(term)),
+    // );
   }
-
-
 }
