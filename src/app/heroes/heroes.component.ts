@@ -11,7 +11,7 @@ import { HeroService } from '../hero.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroesComponent {
-  heroes$: Observable<Hero[]> = this.heroService.heroes$;
+  heroes$: Observable<Hero[]> = this.heroService.allHeroes$;
   // heroes: Hero[] = [];
 
   constructor(private heroService: HeroService) {}
@@ -25,7 +25,7 @@ export class HeroesComponent {
   //   .subscribe(heroes => this.heroes = heroes);
   // }
 
-  add(name: string): void {
+  onAddHero(name: string): void {
     // name = name.trim();
     // console.log(name);
 
@@ -42,10 +42,10 @@ export class HeroesComponent {
     // console.log(this.heroes$)
   }
 
-  // delete(hero: Hero): void {
-  //   this.heroService.deleteHero(hero.id).subscribe();
-  //   this.heroes$ = this.heroes$.pipe(
-  //     map((heroes) => heroes.filter((h) => h !== hero))
-  //   );
-  // }
+  onDeleteHero(hero: Hero): void {
+    this.heroService.deleteHero(hero)
+    // this.heroes$ = this.heroes$.pipe(
+    //   map((heroes) => heroes.filter((h) => h !== hero))
+    // );
+  }
 }
